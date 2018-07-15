@@ -29,14 +29,13 @@ public class PlayerController : MonoBehaviour
     {
         var other = collision.collider; //Get the collider of the other gameobject
 
-        switch (other.tag)
+        if (other.GetComponent<EnemyController>()) //Checks if the other object is enemy
         {
-            case "WinLocation": //Check if player has collided with the win location
-                GameOver();
-                break;
-            case "Enemy": //If player has collided with an enemy
-                GameOver();
-                break;
+            GameOver();
+        }
+        else if (other.name.Contains("winLocation"))//Checks if the other object is winlocation
+        {
+            GameOver();
         }
     }
 
